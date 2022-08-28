@@ -1,0 +1,149 @@
+\def\duedate{08/31/2022}
+\def\HWnum{1}
+\input{../preamble.tex}
+
+\begin{document}
+    
+\textbf{\large Lecture 1}
+
+\prob{1}{Estimate 
+\begin{eqnarray}
+    \label{eq:estimate-question}
+    \Big| \frac{u(t+h) - u(t-h) }{2h} - u'(t) \Big| \leq~?
+.\end{eqnarray}
+for $h>0$ and $|\partial^3u(s)| \leq m$, $s \in [t-h,t+h]$.
+}
+
+We have the expression
+\begin{eqnarray}
+    \label{eq:u(t+h)}
+    u(t+h) = u(t) + hu'(t) + \frac{h^2}{2}u''(t) + \int_{t}^{t+h} \frac{(t+h-s)^{2}}{2} u^{(3)}(s)\,\dd{s}
+.\end{eqnarray}
+Taking $h \rightarrow -h$, \eref{u(t+h)} becomes
+\begin{eqnarray}
+    \label{eq:u(t-h)}
+    u(t-h) = u(t) - hu'(t) + \frac{h^2}{2}u''(t) - \int_{t-h}^{t} \frac{(t-h-s)^{2}}{2} u^{(3)}(s)\,\dd{s}
+.\end{eqnarray}
+Subtracting the two we get
+\begin{align}
+    \label{eq:subtract}
+    u(t+h) - u(t-h) = 2hu'(t) + &\Bigg( \int_{t}^{t+h} \frac{(t+h-s)^{2}}{2} u^{(3)}(s)\,\dd{s} \notag \\
+                                &- \int_{t-h}^{t} \frac{(t-h-s)^{2}}{2} u^{(3)}(s)\,\dd{s} \Bigg)
+.\end{align}
+Thus,
+\begin{align}
+    \label{eq:abs-value-expr}
+    \Big| \frac{u(t+h) - u(t-h)}{2h} - u'(t) \Big| = \frac{1}{2h}&\Bigg| \int_{t}^{t+h} \frac{(t+h-s)^{2}}{2} u^{(3)}(s)\,\dd{s} \notag \\
+    &- \int_{t-h}^{t} \frac{(t-h-s)^{2}}{2} u^{(3)}(s)\,\dd{s} \Bigg|
+.\end{align}
+Using $|a \pm b| \leq |a| + |b|$, $|\int f(x) \, \dd{x}| \leq \int |f(x)|\,\dd{x}$, and the condition $|u^{(3)}| \leq m$, we can write
+\begin{align}
+    \Big| \frac{u(t+h) - u(t-h)}{2h} - u'(t) \Big| &\leq \frac{m}{4h}\Big[\int_{t}^{t+h} (t+h-s)^{2}\, \dd{s} + \int_{t-h}^{t} (t-h-s)^2\, \dd{s} \Big] \notag \\
+                                                   &= \frac{m}{4h}\Big( \frac{h^3}{3} + \frac{h^3}{3} \Big) = \eqbox{\frac{mh^2}{6}}
+.\end{align}
+
+
+\prob{2}{Let there be positive numbers $c,M$ such that for all $N \in \mathbb{Z}_{\geq 0}$
+\begin{eqnarray}
+    \label{eq:condition}
+    |\partial^{N}u(s)| \leq c M^{N} N!, \qquad |s-a| \leq |t-a|
+.\end{eqnarray}
+Using
+\begin{eqnarray}
+    \label{eq:taylor-series}
+    u(t) = \sum_{n=0}^{N-1} \frac{(t-a)^{n}}{n!} \partial^{n}u(a) + \int_{a}^{t} \frac{(t-s)^{N-1}}{(N-1)!} \partial^{N} u(s)\, {\rm d}s
+,\end{eqnarray}
+show that 
+\begin{eqnarray}
+    \label{eq:exercise2-res}
+    \Big|u(t) - \sum_{n=0}^{N-1} \frac{(t-a)^{n}}{n!}\partial^{n}u(a) \Big| \leq c(M|t-a|)^{N} \rightarrow 0
+\end{eqnarray}
+if $M|t-a| < 1$. In this case we obtain Taylor's series for function $u$.
+}
+
+From \eref{taylor-series} we have (assuming $t > a$)
+\begin{align}
+    \label{eq:taylor-series-abs-val}
+    \Bigg| u(t) - \sum_{n=0}^{N-1} \frac{(t-a)^{n}}{n!} \partial^{n}u(a) \Bigg| &= \Bigg| \int_{a}^{t} \frac{(t-s)^{N-1}}{(N-1)!} \partial^{N} u(s)\, {\rm d}s \Bigg| \notag \\
+    &\leq \frac{c M^{N}N!}{(N-1)!} \int_{a}^{t} |t-s|^{N-1}\, \dd{s} \notag \\
+    &= c N M^{N} \frac{(t-s)^{N}}{N}\Bigg|_{a}^{t} \notag \\
+    &= c M^{N}[-(a-s)^{N}] \notag\\
+    &= \eqbox{c\Big[M|t-a|\Big]^{N}}
+.\end{align}
+Note that the argument is similar for $t < a$. 
+We get a relative $-$ sign from switching the bounds of integration and another from having $t < s$ such that $|t-s| = -(t-s)$.
+These minus signs cancel giving us the result in \eref{taylor-series-abs-val}.
+
+If $M|t-a|<1$, then in the limit $N\rightarrow\infty$, we have $c[M|t-a|]^{N} \rightarrow 0$.
+
+
+\prob{3}{Let there be positive numbers $c,M$ such that for all $N \in \mathbb{Z}_{\geq 0}$
+\begin{eqnarray}
+    \label{eq:condition-3}
+    |\partial^{N}u(s)| \leq cM^{N}(N!)^{\alpha}, \qquad \alpha<1,\quad s \in \mathbb{R}
+.\end{eqnarray}
+Show that in this case we have convergent Taylor series for all $t,a \in \mathbb{R}$.
+}
+
+Note that
+\begin{eqnarray}
+    \label{eq:condition-rearrange}
+|\partial^{N}u(s)| \leq c M^{N} (N!)^{\alpha} = \frac{c M^{N} N!}{(N!)^{1-\alpha}}
+.\end{eqnarray}
+Thus, we can alter \eref{taylor-series-abs-val} to read
+\begin{eqnarray}
+    \label{eq:taylor-abs-val-3}
+    \Bigg| u(t) - \sum_{n=0}^{N-1} \frac{(t-a)^{n}}{n!}\partial^{n}u(a)  \Bigg| \leq \frac{c[M|t-a|]^{N}}{(N!)^{1-\alpha}} \rightarrow 0, \quad \mbox{as } N \rightarrow \infty 
+,\end{eqnarray}
+noting that factorials grow faster than powers of $N$.
+
+\textbf{\large Lecture 2}
+
+\prob{1}{Check that
+\begin{eqnarray}
+    \label{eq:v(t)}
+    v(t) = \int_{0}^{t} \frac{\sin[(t-\tau)\sqrt{A}]}{\sqrt{A}}f(\tau)\,\dd{\tau}
+.\end{eqnarray}
+satisfies $v(0)=\partial_{t}v(0)=0$ and $(\partial_{t}^{2}+A)v=f(t)$ for $t>0$.
+}
+
+It is clear that $v(0) = 0$ since the upper bound is the same as the lower bound at $t = 0$.
+Next, 
+\begin{align}
+    \label{eq:derivative-at-0}
+    \partial_{t}v(t) &= \frac{\sin{[(t-\tau)\sqrt{A}]}}{\sqrt{A}}f(\tau)\Bigg|_{\tau=t} + \int_{0}^{t}\partial_{t}\Big(\frac{\sin{[(t-\tau)\sqrt{A}]}}{\sqrt{A}}\Big)f(\tau)\, \dd{\tau} \notag \\
+                     &= \int_{0}^{t} \cos{[(t-\tau)\sqrt{A}]}f(\tau)\,\dd{\tau} \Rightarrow \eqbox{\partial_{t}v(0) = 0}
+.\end{align}
+Finally,
+\begin{align}
+    \label{eq:v''}
+    \partial_{t}^2v(t) &= \partial_{t} \int_{0}^{t} \cos{[(t-\tau)\sqrt{A}]}f(\tau)\, \dd{\tau} \notag \\
+                       &= f(\tau) - \int_{0}^{t} \sqrt{A}\sin{[(t-\tau)\sqrt{A}]}f(\tau)\,\dd{\tau} \notag \\
+                       &= f(\tau) - A v(t) \notag \\
+                       &\Rightarrow \eqbox{(\partial_{t}^2-A)v(t) = f(\tau)}
+\end{align}
+
+
+\prob{2}{Check
+\begin{align}
+    \label{eq:u(t)-soln}
+    u(t) = \frac{\sin{[(T-t)\sqrt{A}}]}{\sin{(T\sqrt{A})}}g &+ \frac{\sin{(t\sqrt{A})}}{\sin{(T\sqrt{A})}}\Big[ h - \int_{0}^{T} \frac{\sin{[(T-\tau)\sqrt{A}]}}{\sqrt{A}}f(\tau)\,\dd{\tau} \Big] \notag \\
+                                                            &+ \int_{0}^{t} \frac{\sin{[(t-\tau)\sqrt{A}]}}{\sqrt{A}}f(\tau)\,\dd{\tau}
+.\end{align}
+satisfies the boundary conditions $u(0)=g$ and $u(T)=h$. 
+}
+
+First, we check at $t=0$:
+\begin{eqnarray}
+    \label{eq:check-0}
+    u(0) = \frac{\sin{(T\sqrt{A})}}{\sin{(T\sqrt{A})}}g = g
+.\end{eqnarray}
+Next, we check at $t=T$:
+\begin{eqnarray}
+    \label{eq:check-T}
+    u(T) = h - \int_{0}^{T} \frac{\sin[(T-\tau)\sqrt{A}]}{\sqrt{A}}f(\tau)\,\dd{\tau} + \int_{0}^{T} \frac{\sin[(T-\tau)\sqrt{A}]}{\sqrt{A}}f(\tau)\,\dd{\tau} = h
+.\end{eqnarray}
+
+
+
+\end{document}
