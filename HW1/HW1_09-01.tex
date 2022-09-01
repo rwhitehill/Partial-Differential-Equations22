@@ -36,7 +36,7 @@ Thus,
     \Big| \frac{u(t+h) - u(t-h)}{2h} - u'(t) \Big| = \frac{1}{2h}&\Bigg| \int_{t}^{t+h} \frac{(t+h-s)^{2}}{2} u^{(3)}(s)\,\dd{s} \notag \\
     &- \int_{t-h}^{t} \frac{(t-h-s)^{2}}{2} u^{(3)}(s)\,\dd{s} \Bigg|
 .\end{align}
-Using $|a \pm b| \leq |a| + |b|$, $|\int f(x) \, \dd{x}| \leq \int |f(x)|\,\dd{x}$, and the condition $|u^{(3)}| \leq m$, we can write
+Using $|a \pm b| \leq |a| + |b|$, $|\int f(x) \, \dd{x}| \leq \int |f(x)|\,\dd{x}$, and the condition $|u^{(3)}(s)| \leq m$, we can write
 \begin{align}
     \Big| \frac{u(t+h) - u(t-h)}{2h} - u'(t) \Big| &\leq \frac{m}{4h}\Big[\int_{t}^{t+h} (t+h-s)^{2}\, \dd{s} + \int_{t-h}^{t} (t-h-s)^2\, \dd{s} \Big] \notag \\
                                                    &= \frac{m}{4h}\Big( \frac{h^3}{3} + \frac{h^3}{3} \Big) = \eqbox{\frac{mh^2}{6}}
@@ -74,7 +74,11 @@ Note that the argument is similar for $t < a$.
 We get a relative $-$ sign from switching the bounds of integration and another from having $t < s$ such that $|t-s| = -(t-s)$.
 These minus signs cancel giving us the result in \eref{taylor-series-abs-val}.
 
-If $M|t-a|<1$, then in the limit $N\rightarrow\infty$, we have $c[M|t-a|]^{N} \rightarrow 0$.
+If $M|t-a|<1$, then in the limit $N\rightarrow\infty$, we have $c[M|t-a|]^{N} \rightarrow 0$ and recover the Taylor series:
+\begin{align}
+    \label{eq:taylor-series}
+    u(t) = \sum_{n=0}^{\infty} \frac{(t-a)^{n}}{n!}\partial^{n}u(a)
+\end{align}
 
 
 \prob{3}{Let there be positive numbers $c,M$ such that for all $N \in \mathbb{Z}_{\geq 0}$
@@ -118,9 +122,9 @@ Finally,
 \begin{align}
     \label{eq:v''}
     \partial_{t}^2v(t) &= \partial_{t} \int_{0}^{t} \cos{[(t-\tau)\sqrt{A}]}f(\tau)\, \dd{\tau} \notag \\
-                       &= f(\tau) - \int_{0}^{t} \sqrt{A}\sin{[(t-\tau)\sqrt{A}]}f(\tau)\,\dd{\tau} \notag \\
-                       &= f(\tau) - A v(t) \notag \\
-                       &\Rightarrow \eqbox{(\partial_{t}^2-A)v(t) = f(\tau)}
+                       &= f(t) - \int_{0}^{t} \sqrt{A}\sin{[(t-\tau)\sqrt{A}]}f(\tau)\,\dd{\tau} \notag \\
+                       &= f(t) - A v(t) \notag \\
+                       &\Rightarrow \eqbox{(\partial_{t}^2+A)v(t) = f(t)}
 \end{align}
 
 
