@@ -1,0 +1,132 @@
+\def\duedate{09/15/2022}
+\def\HWnum{3}
+\input{../preamble.tex}
+
+\begin{document}
+    
+\prob{2.4.3}{
+Use 
+\begin{eqnarray}
+    \label{eq:source-func}
+    u(x,t) = \frac{1}{\sqrt{4\pi kt}}\int_{-\infty}^{\infty} e^{-(x-y)^2/4kt} \phi(y) \dd{y}
+.\end{eqnarray}
+to solve the diffusion equation if $\phi(x) = e^{3x}$.
+}
+
+Plugging $\phi$ into \eref{source-func}, we have
+\begin{align}
+    \label{eq:source-with-phi}
+    u(x,t) &= \frac{1}{\sqrt{4 \pi k t}} \int_{-\infty}^{\infty} e^{-(x-y)^2/4kt + 3y} \dd{y} \notag \\
+           &= \frac{1}{\sqrt{4 \pi k t}} \int_{-\infty}^{\infty} e^{-(x^2-2xy+y^2-12kty)/4kt} \dd{y} \notag \\
+           &= \frac{1}{\sqrt{4 \pi k t}} e^{-x^2/4kt} \int_{-\infty}^{\infty} e^{-(y^2-2(6kt+x)y+(6kt-x)^2 - (6kt-x)^2)/4kt} \dd{y} \notag \\
+           &= \frac{1}{\sqrt{4 \pi k t}} e^{-x^2/4kt}e^{(x-6kt)^2/4kt} \int_{-\infty}^{\infty} e^{-[y-(6kt+x)]^2/4kt} \dd{y} \notag \\
+           &= \eqbox{e^{3x + 9kt}}
+.\end{align}
+
+
+
+\prob{2.4.6}{
+    Compute $\int_{0}^{\infty} e^{-x^2} \dd{x}$.
+}
+
+Let
+\begin{eqnarray}
+    \label{eq:I-def}
+    I = \int_{0}^{\infty} e^{-x^2} \dd{x}
+,\end{eqnarray}
+then
+\begin{eqnarray}
+    \label{eq:Isq}
+    I^2 = \int_{0}^{\infty}\int_{0}^{\infty} e^{-x^2}e^{-y^2} \dd{x}\dd{y} = \int_{0}^{\infty}\int_{0}^{\infty} e^{-(x^2+y^2)} \dd{x}\dd{y}
+.\end{eqnarray}
+Changing to polar coordinates, we have $\dd{x}\dd{y} = r\dd{r}\dd{\phi}$, where $r \in [0,\infty]$ and $\phi \in [0,\pi/2]$ and $r = \sqrt{x^2 + y^2}$.
+Thus, \eref{Isq} becomes
+\begin{eqnarray}
+    \label{eq:Isq-polar}
+    I^2 = \int_{0}^{\pi/2} \int_{0}^{\infty} e^{-r^2} r\dd{r}\dd{\phi}
+.\end{eqnarray}
+If we make the substitution $u = r^2$, then
+\begin{eqnarray}
+    \label{eq:Isq-sub}
+    I^2 = \frac{\pi}{4} \int_{0}^{\infty} e^{-u} \dd{u} = \frac{\pi}{4}
+,\end{eqnarray}
+leaving us with
+\begin{eqnarray}
+    \label{eq:I-result}
+    \eqbox{
+    I = \sqrt{\frac{\pi}{4}} = \frac{\sqrt{\pi}}{2}
+}
+.\end{eqnarray}
+
+\prob{2.4.7}{
+    Use Exercise 6 to show that $\int_{-\infty}^{\infty} e^{-p^2} \dd{p} = \sqrt{\pi}$.
+    Then substitute $p = x/\sqrt{4kt}$ to show that 
+    \begin{eqnarray}
+        \label{eq:result-7}
+        \int_{-\infty}^{\infty} S(x,t) \dd{x} = 1
+    .\end{eqnarray}
+}
+
+Notice that $e^{-p^2}$ is an even function in $p$, so
+\begin{eqnarray}
+    \label{eq:gauss-int}
+    \int_{-\infty}^{\infty} e^{-p^2} \dd{p} = 2\int_{0}^{\infty} e^{-p^2} \dd{p} = 2\frac{\sqrt{\pi}}{2} = \sqrt{\pi}
+.\end{eqnarray}
+It is given in the text that $S(x,t) = \exp(-x^2/4kt)/\sqrt{4 \pi k t}$, so
+\begin{eqnarray}
+    \label{eq:int-source}
+    \int_{-\infty}^{\infty} S(x,t) \dd{x} = \frac{1}{\sqrt{4 \pi k t}}\int_{-\infty}^{\infty} e^{-\frac{x^2}{4kt}} \dd{x}
+.\end{eqnarray}
+If we make the change of variables $p = x/\sqrt{4kt}$, then $p \in (-\infty,\infty)$ and $\dd{x} = \sqrt{4 k t}\dd{p}$, meaning
+\begin{eqnarray}
+    \label{eq:int-source-sub}
+    \eqbox{
+    \int_{-\infty}^{\infty} S(x,t) \dd{x} = \frac{1}{\sqrt{\pi}} \int_{-\infty}^{\infty} e^{-p^2} = 1
+}
+.\end{eqnarray}
+
+
+\prob{2.4.8}{
+Show that for any fixed $\delta > 0$ (no matter how small),
+\begin{eqnarray}
+    \label{eq:result-8}
+    \max_{\delta \leq |x| < \infty} S(x,t) \rightarrow 0 \quad {\rm as}~ t \rightarrow 0
+.\end{eqnarray}
+}
+
+Observe that $S(x,t)$ is a monotonically decreasing function for $x > 0$ at every $t$.
+Thus, the absolute maximum of $S(x,t)$ is taken on whenever $x = \delta$ in the interval $[\delta,\infty)$.
+That is,
+\begin{eqnarray}
+    \label{eq:max-S}
+    \lim_{t \rightarrow 0} \max_{\delta \leq |x| < \infty} S(x,t) = S(\delta,t) = \lim_{t \rightarrow 0} \frac{1}{\sqrt{4 \pi k t}}e^{-\delta^2/4 k t}
+.\end{eqnarray}
+Notice that this limit is in an indeterminate form, so we may use L'Hopital's rule, differentiating the numerator and denominator separately and taking the limit
+\begin{eqnarray}
+    \label{eq:limit}
+    \lim_{t \rightarrow 0} \frac{e^{-\delta^2/4kt}}{\sqrt{4kt}} = \lim_{t \rightarrow 0} \frac{\sqrt{t}}{\sqrt{\pi k}} \frac{\delta^2}{4k t^2} e^{-} = 
+.\end{eqnarray}
+
+
+
+\prob{2.4.9}{
+Solve the diffusion equation $u_{t} = ku_{xx}$ with the initial condition $u(x,0) = x^2$ by the following special method.
+First show that $u_{xxx}$ satisfies the diffusion equation with \textit{zero} initial condition.
+Therefore, by uniqueness $u_{xxx} \equiv 0$.
+Integrating this result thrice, obtain $u(x,t) = A(t)x^2 + B(t)x + C(t)$.
+Finally, it's easy to solve for $A$, $B$, and $C$ by plugging into the original problem.
+}
+
+
+\prob{2.4.15}{
+Prove the uniqueness of the diffusion problem with Neumann boundary conditions:
+\begin{align}
+    \label{eq:Neumann-BC}
+    u_{t} - ku_{xx} = f(x,t) \quad {\rm for}~ 0 < x < l,t > 0 \\
+    u(x,0) = \phi(x) ~~ u_{x}(0,t) = g(t) ~~ u_{x}(l,t) = h(t)
+.\end{align}
+by the energy method.
+}
+
+
+\end{document}
