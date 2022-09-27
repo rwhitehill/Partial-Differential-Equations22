@@ -1,0 +1,160 @@
+\def\duedate{09/29/22}
+\def\HWnum{4}
+\input{../preamble.tex}
+
+\begin{document}
+    
+\prob{2.4.16}{
+Solve the diffusion equation with constant dissipation: $u_{t} - ku_{xx} + bu = 0$ for $- \infty < x < \infty$ with $u(x,0) = \phi(x)$.
+}
+
+Consider the change of variables given by $u = e^{-bt}v$.
+Then $u_{t} = -bu + e^{-bt}v_{t}$ and $u_{xx} = e^{-bt}v_{xx}$, which makes the diffusion equation with constant dissipation
+\begin{eqnarray}
+    \label{eq:heat-with-diss}
+    -bu + e^{-bt}v_{t} - ke^{-bt}v_{xx} + bu = e^{-bt}v_{t} - ke^{-bt}v_{xx} = 0 \Rightarrow v_{t} - kv_{xx} = 0
+.\end{eqnarray}
+That is, $v = e^{bt}u$ satisfies the diffusion equation with no dissipation, where the initial condition $v(x,0) = \phi(x)$
+\begin{eqnarray}
+    \label{eq:v-constant-diss}
+    v = \frac{1}{\sqrt{4 \pi k t}}\int_{-\infty}^{\infty} e^{-(x-y)^2/4kt}\phi(y) \dd{y}
+,\end{eqnarray}
+which gives $u$ as
+\begin{eqnarray}
+    \label{eq:u-from-v}
+    \eqbox{
+    u = \frac{e^{-bt}}{\sqrt{4 \pi k t}}\int_{-\infty}^{\infty} e^{-(x-y)^2/4kt} \phi(y) \dd{y}
+}
+.\end{eqnarray}
+Notice that this form of $u$ makes sense.
+It is similar to a harmonic oscillator with linear damping.
+That is, the solution is a product of the decaying exponential $e^{-bt}$, which depends on the damping parameter $b$, and the solution of the diffusion equation (with no damping). 
+
+\prob{2.4.17}{
+Solve the diffusion equation with variable dissipation: $u_{t} - ku_{x} + bt^2u = 0$ for $-\infty < x < \infty$ with $u(x,0) = \phi(x)$.
+}
+
+Consider the change of variables given by $u = e^{-bt^3/3}v$.
+Thus, $u_{t} = e^{-bt^3/3}v_{t} - bt^2u$ and $u_{xx} = e^{-bt^3/3}v_{xx}$, making the diffusion equation with variable dissipation
+\begin{eqnarray}
+    \label{eq:heat-with-var-diss}
+    e^{-bt^3/3}v_{t} - bt^2u - ke^{-bt^3/3}v_{xx} + bt^2u = e^{-bt^3/3}[v_{t} - kv_{xx}] = 0 \Rightarrow v_{t} - kv_{xx} = 0
+.\end{eqnarray}
+Hence, observing that $v(x,0) = \phi(x)$
+\begin{eqnarray}
+    \label{eq:v-var-diss}
+    v = \frac{1}{\sqrt{4 \pi k t}} \int_{-\infty}^{\infty} e^{-(x-y)^2/4kt}\phi(y) \dd{y}
+.\end{eqnarray}
+\begin{eqnarray}
+    \label{eq:u-var-diss}
+    \eqbox{
+    u = \frac{e^{-bt^3/3}}{\sqrt{4 \pi k t}} \int_{-\infty}^{\infty} e^{-(x-y)^2/4kt} \phi(y) \dd{y}
+}
+,\end{eqnarray}
+which is similar to the form of \eref{u-from-v}, except that our solution decays faster since the dissipation becomes quadratically stronger over time.
+
+
+\prob{2.4.18}{
+Solve the heat equation with convection: $u_{t} - ku_{xx} + Vu_{x} = 0$ for $-\infty < x < \infty$ with $u(x,0) = \phi(x)$.
+}
+
+We have the equation $u_{t} - Au = 0$ with $A = k\partial_{x}^2 - V\partial_{x}$, which has solution
+\begin{eqnarray}
+    \label{eq:u-operator}
+    u = e^{kt\partial_{x}^2}e^{-Vt\partial_{x}}\phi(x) = e^{-kt\partial_{x}^2}\phi(x-Vt)
+,\end{eqnarray}
+which makes our solution (letting $y = x - Vt$)
+\begin{eqnarray}
+    \label{eq:u-with-change}
+    \eqbox{
+    u = \frac{1}{\sqrt{4 \pi k t}} \int_{-\infty}^{\infty} e^{-(y-z)^2/4kt} \phi(z) \dd{z} = \frac{1}{\sqrt{4 \pi k t}} \int_{-\infty}^{\infty} e^{-(x - Vt - z)^2/4kt}\phi(z) \dd{z}
+}
+.\end{eqnarray}
+
+
+\prob{2.5.4}{
+Here is a direct relationship between the wave and diffusion equations.
+Let $u(x,t)$ solve the wave equation on the whole line with bounded second derivatives.
+Let
+\begin{eqnarray}
+    \label{eq:v-from-u}
+    v(x,t) = \frac{c}{\sqrt{4 \pi k t}}\int_{-\infty}^{\infty} e^{-s^2c^2/4kt}u(x,s) \dd{s}
+.\end{eqnarray}
+}
+
+(a) Show that $v(x,t)$ solves the diffusion equation!
+
+We will show that $v$ satisfies the equation $v_{t} - kv_{xx} = 0$, assuming that $u$ satisfies the equation $u_{tt} = c^2u_{xx}$.
+Observe that
+\begin{align}
+\label{eq:time-deriv-v} 
+    \pdv{v}{t} &= -\frac{1}{2t}\frac{c}{\sqrt{4\pi k t}}\int_{-\infty}^{\infty} e^{-s^2c^2/4kt} u(x,s) \dd{s} + \frac{c}{\sqrt{4 \pi k t}} \int_{-\infty}^{\infty} \frac{s^2c^2}{4kt^2}e^{-s^2c^2/4kt}u(x,s) \dd{s} \notag \\
+               &= \frac{c}{\sqrt{4 \pi k t}} \int_{-\infty}^{\infty} \Big[ \frac{s^2c^2}{4kt^2} - \frac{1}{2t} \Big]e^{-s^2c^2/4kt} u(x,s) \dd{s}
+\end{align}
+Observe that 
+\begin{eqnarray}
+    \label{eq:t-deriv-exp}
+    \pdv[2]{s}e^{-s^2c^2/4kt} = \frac{c^2}{4k^2t^2}\Big[ s^2c^2 - 2kt \Big] e^{-s^2c^2/4kt} = \frac{c^2}{k}\Big[ \frac{s^2c^2}{4kt^2} - \frac{1}{2t} \Big]e^{-s^2c^2/4kt}
+.\end{eqnarray}
+Thus, \eref{time-deriv-v} becomes
+\begin{eqnarray}
+    \label{eq:time-deriv-v-2}
+    \pdv{v}{t} = \frac{c}{\sqrt{4 \pi k t}} \int_{-\infty}^{\infty} \frac{k}{c^2} \pdv[2]{s}\Big(e^{-s^2c^2/4kt} \Big)u(x,s) \dd{s} = \frac{k}{c^2} \frac{c}{\sqrt{4 \pi k t}} \int_{-\infty}^{\infty} e^{-s^2c^2/4kt} u_{ss}(x,s) \dd{s}
+.\end{eqnarray}
+
+Next, we have 
+\begin{eqnarray}
+    \label{eq:space-deriv-v}
+    \pdv[2]{x} \frac{c}{\sqrt{4 \pi k t}}\int_{-\infty}^{\infty} e^{-s^2c^2/4kt}u(x,s) \dd{s} = \frac{c}{\sqrt{4 \pi k t}}\int_{-\infty}^{\infty} e^{-s^2c^2/4kt}u_{xx}(x,s) \dd{s}
+.\end{eqnarray}
+
+Hence,
+\begin{align}
+    \label{eq:piecing-puzzle}
+    \eqbox{
+    v_{t} - k v_{xx} = \frac{ck}{\sqrt{4 \pi k t}} \int_{-\infty}^{\infty} \Big[ \frac{1}{c^2}u_{ss}(x,s) - u_{xx}(x,s) \Big] e^{-s^2c^2/4kt} \dd{s} = 0
+}
+\end{align}
+
+
+
+(b) Show that $\displaystyle \lim_{t \rightarrow 0} v(x,t) = u(x,0)$.
+
+Observe that 
+\begin{eqnarray}
+    \label{eq:delta-limit}
+    \lim_{t \rightarrow 0} \frac{c}{\sqrt{4 \pi k t}}e^{-s^2c^2/4kt} = \delta(s)
+,\end{eqnarray}
+so
+\begin{eqnarray}
+    \label{eq:limit-prob-2-5-4}
+    \eqbox{
+    \lim_{t \rightarrow 0} \frac{c}{\sqrt{4 \pi k t}} \int_{-\infty}^{\infty} e^{-s^2c^2/4kt}u(x,s) \dd{s} = \int_{-\infty}^{\infty} \delta(s) u(x,s) \dd{s} = u(x,0)
+}
+.\end{eqnarray}
+
+
+\prob{12.3}{
+Check formulas (6) and (7) from page 345:
+\begin{align}
+    \label{eq:formulas_6-7} 
+    \mathcal{F}\{H(a - |x|)\} &= \frac{2}{k}\sin{ak} \\
+    \mathcal{F}\{ e^{-a|x|} \} &= \frac{2a}{a^2 + k^2} \quad \mbox{for}~ a > 0
+,\end{align}
+where $\displaystyle \mathcal{F}\{f\} = \int_{-\infty}^{\infty} f(x) e^{-ikx} \dd{x}$ and $H(x)$ is the Heaviside step function.
+}
+
+\prob{6}{
+Check formulas (i), (ii), and (iii) on page 346:
+\begin{align}
+    \label{eq:formulas_i-ii-iii} 
+    &\mbox{i}:~\mathcal{F}\Big\{\dv{f}{x}\Big\} = ik\mathcal{F}\{f(x)\} \\
+    &\mbox{ii}:~ \mathcal{F}\{xf(x)\} = i\dv{\mathcal{F}\{f(x)\}}{k} \\
+    &\mbox{iii}:~ \mathcal{F}\{f(x-a)\} = e^{-iak}\mathcal{F}\{f(x)\}
+\end{align}
+}
+
+
+
+
+\end{document}
