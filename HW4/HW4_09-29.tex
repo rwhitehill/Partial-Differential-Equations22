@@ -120,18 +120,38 @@ Hence,
 
 (b) Show that $\displaystyle \lim_{t \rightarrow 0} v(x,t) = u(x,0)$.
 
-Observe that 
+We have already proven that for $\delta > 0$
 \begin{eqnarray}
-    \label{eq:delta-limit}
-    \lim_{t \rightarrow 0} \frac{c}{\sqrt{4 \pi k t}}e^{-s^2c^2/4kt} = \delta(s)
-,\end{eqnarray}
-so
-\begin{eqnarray}
-    \label{eq:limit-prob-2-5-4}
-    \eqbox{
-    \lim_{t \rightarrow 0} \frac{c}{\sqrt{4 \pi k t}} \int_{-\infty}^{\infty} e^{-s^2c^2/4kt}u(x,s) \dd{s} = \int_{-\infty}^{\infty} \delta(s) u(x,s) \dd{s} = u(x,0)
-}
+    \label{eq:gaussian-zero-unless-zero}
+    \lim_{t \rightarrow 0} \max_{\delta \leq |s| < \infty} \frac{1}{\sqrt{4 \pi k t}}e^{-s^2/4kt} = 0
 .\end{eqnarray}
+In this case, we let $1/4kt \rightarrow c^2/4kt$ for this problem.
+Hence, this tells us that 
+\begin{eqnarray}
+    \label{eq:gaussian-limit}
+    \lim_{t \rightarrow 0} \frac{c}{\sqrt{4 \pi k t}} e^{-s^2c^2/4kt} = 0 ~\mbox{if}~s>0
+.\end{eqnarray}
+Thus, we can write
+\begin{eqnarray}
+    \label{eq:gaussian-times-function}
+    \lim_{t \rightarrow 0} \frac{c}{\sqrt{4 \pi k t}} e^{-s^2c^2/4kt}u(x,s) = u(x,0) \lim_{t \rightarrow} \frac{c}{\sqrt{4 \pi k t}} e^{-s^2c^2/4kt}
+.\end{eqnarray}
+We can now prove the claim of this problem:
+\begin{eqnarray}
+    \label{eq:limit-v}
+    \eqbox{
+    \begin{aligned}
+    \lim_{t \rightarrow 0} v(x,t) &= \lim_{t \rightarrow 0} \int_{-\infty}^{\infty} \frac{c}{\sqrt{4 \pi k t}} e^{-s^2 c^2/4kt}u(x,s) \dd{s} \notag \\
+    &= u(x,0) \lim_{t \rightarrow 0} \int_{-\infty}^{\infty} \frac{c}{\sqrt{4 \pi k t}} e^{-s^2c^2/4kt} \dd{s} = u(x,0)
+    \end{aligned}
+    }
+,\end{eqnarray}
+since $c\exp(-s^2c^2/4kt)/\sqrt{4 \pi k t}$ is a normalized gaussian for all $t$, meaning that
+\begin{eqnarray}
+    \label{eq:normalized-gaussian}
+    \int_{-\infty}^{\infty} \frac{c}{\sqrt{4 \pi k t}} e^{-s^2c^2/4kt} \dd{s} = 1
+.\end{eqnarray}
+
 
 
 \prob{12.3}{
