@@ -137,22 +137,78 @@ so
 \prob{12.3}{
 Check formulas (6) and (7) from page 345:
 \begin{align}
-    \label{eq:formulas_6-7} 
+    \label{eq:formula-6} 
     \mathcal{F}\{H(a - |x|)\} &= \frac{2}{k}\sin{ak} \\
+    \label{eq:formula-7}
     \mathcal{F}\{ e^{-a|x|} \} &= \frac{2a}{a^2 + k^2} \quad \mbox{for}~ a > 0
 ,\end{align}
 where $\displaystyle \mathcal{F}\{f\} = \int_{-\infty}^{\infty} f(x) e^{-ikx} \dd{x}$ and $H(x)$ is the Heaviside step function.
 }
 
+For \eref{formula-6}, we have 
+\begin{eqnarray}
+    \label{eq:fourier-heaviside}
+    \eqbox{
+    \mathcal{F}\{ H(a-|x|) \} = \int_{-\infty}^{\infty} H(a-|x|)e^{-ikx} \dd{x} = \int_{-a}^{a} e^{-ikx} \dd{x} = \frac{e^{-ika} - e^{ika}}{-ik} = \frac{2}{k}\sin{ka}
+    }
+,\end{eqnarray}
+where we have used the identity
+\begin{eqnarray}
+    \label{eq:sine-exp-id}
+    \sin{x} = \frac{e^{ikx} - e^{-ikx}}{2i}
+.\end{eqnarray}
+
+Now, for \eref{formula-7}, we have
+\begin{align}
+    \label{eq:fourier-exp-abs-x}
+    \mathcal{F}\{e^{-a|x|}\} &= \int_{-\infty}^{\infty} e^{-a|x|}e^{-ikx} \dd{x} = \int_{-\infty}^{0} e^{(a-ik)x} \dd{x} + \int_{0}^{\infty} e^{-(a+ik)x} \dd{x} \\
+    &= \frac{1}{a-ik} + \frac{1}{a+ik}
+,\end{align}
+where we have assumed $a > 0$ such that the evaluation of the integral vanishes at $\pm \infty$.
+Collecting terms and simplifying we find
+\begin{eqnarray}
+    \label{eq:rewrite-formula-7}
+    \eqbox{
+    \mathcal{F}\{e^{-a|x|}\} = \frac{(a+ik) + (a-ik)}{(a-ik)(a+ik)} = \frac{2a}{a^2 + k^2}
+}
+.\end{eqnarray}
+
+
 \prob{6}{
 Check formulas (i), (ii), and (iii) on page 346:
 \begin{align}
-    \label{eq:formulas_i-ii-iii} 
+    \label{eq:formula-i} 
     &\mbox{i}:~\mathcal{F}\Big\{\dv{f}{x}\Big\} = ik\mathcal{F}\{f(x)\} \\
+    \label{eq:formula-ii}
     &\mbox{ii}:~ \mathcal{F}\{xf(x)\} = i\dv{\mathcal{F}\{f(x)\}}{k} \\
+    \label{eq:formula-iii}
     &\mbox{iii}:~ \mathcal{F}\{f(x-a)\} = e^{-iak}\mathcal{F}\{f(x)\}
 \end{align}
 }
+
+For \eref{formula-i} we have
+\begin{eqnarray}
+    \label{eq:formula-i-work}
+    \mathcal{F}\Big\{\dv{f}{x}\Big\} = \int_{-\infty}^{\infty} \dv{f}{x} e^{-ikx} \dd{x} = -ike^{-ikx}f(x)\Big|_{-\infty}^{\infty} + ik \int_{-\infty}^{\infty} f(x) e^{-ikx} \dd{x} = ik\mathcal{F}\{f(x)\}
+,\end{eqnarray}
+where we have supposed that $f$ goes to zero at $\pm \infty$.
+
+Next, for \eref{formula-ii} we have
+\begin{eqnarray}
+    \label{eq:formula-ii-work}
+    \mathcal{F}\{xf(x)\} = \int_{-\infty}^{\infty} xf(x)e^{-ikx} \dd{x} = \int_{-\infty}^{\infty}f(x)\Big(\frac{1}{-i}\Big)\pdv{k}e^{-ikx} \dd{x} \\
+    = \eqbox{i\dv{k}\int_{-\infty}^{\infty} f(x)e^{-ikx} \dd{x} = i\dv{\mathcal{F}\{f(x)\}}{k}
+}
+.\end{eqnarray}
+
+Finally, for \eref{formula-iii} we can make the substitution $y = x-a$ such that
+\begin{eqnarray}
+    \label{eq:formula-iii-work}
+    \eqbox{
+    \mathcal{F}\{f(x-a)\} = \int_{-\infty}^{\infty} f(x-a)e^{-ikx} \dd{x} = \int_{-\infty}^{\infty} f(y)e^{-iky}e^{-ika} \dd{y} = e^{ika}\mathcal{F}\{f(x)\}
+    }
+.\end{eqnarray}
+
 
 
 
