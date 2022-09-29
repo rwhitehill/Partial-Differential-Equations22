@@ -26,7 +26,7 @@ which gives $u$ as
     u = \frac{e^{-bt}}{\sqrt{4 \pi k t}}\int_{-\infty}^{\infty} e^{-(x-y)^2/4kt} \phi(y) \dd{y}
 }
 .\end{eqnarray}
-Notice that this form of $u$ makes sense.
+This form of $u$ makes sense.
 It is similar to a harmonic oscillator with linear damping.
 That is, the solution is a product of the decaying exponential $e^{-bt}$, which depends on the damping parameter $b$, and the solution of the diffusion equation (with no damping). 
 
@@ -63,7 +63,8 @@ We have the equation $u_{t} - Au = 0$ with $A = k\partial_{x}^2 - V\partial_{x}$
     \label{eq:u-operator}
     u = e^{kt\partial_{x}^2}e^{-Vt\partial_{x}}\phi(x) = e^{-kt\partial_{x}^2}\phi(x-Vt)
 ,\end{eqnarray}
-which makes our solution (letting $y = x - Vt$)
+which means that $\phi(x-Vt)$ satisfies the diffusion equation (without convection).
+This makes our solution (letting $y = x - Vt$)
 \begin{eqnarray}
     \label{eq:u-with-change}
     \eqbox{
@@ -131,10 +132,16 @@ Hence, this tells us that
     \label{eq:gaussian-limit}
     \lim_{t \rightarrow 0} \frac{c}{\sqrt{4 \pi k t}} e^{-s^2c^2/4kt} = 0 ~\mbox{if}~s>0
 .\end{eqnarray}
+Furthermore, it is trivial to see that if $s=0$, then
+\begin{eqnarray}
+    \label{eq:limit-at-0}
+    \lim_{t \rightarrow 0} v(0,t) = \lim_{t \rightarrow 0} \frac{c}{\sqrt{4 \pi k t}} = \infty
+.\end{eqnarray}
+
 Thus, we can write
 \begin{eqnarray}
     \label{eq:gaussian-times-function}
-    \lim_{t \rightarrow 0} \frac{c}{\sqrt{4 \pi k t}} e^{-s^2c^2/4kt}u(x,s) = u(x,0) \lim_{t \rightarrow} \frac{c}{\sqrt{4 \pi k t}} e^{-s^2c^2/4kt}
+    \lim_{t \rightarrow 0} \frac{c}{\sqrt{4 \pi k t}} e^{-s^2c^2/4kt}u(x,s) = u(x,0) \lim_{t \rightarrow 0} \frac{c}{\sqrt{4 \pi k t}} e^{-s^2c^2/4kt}
 .\end{eqnarray}
 We can now prove the claim of this problem:
 \begin{eqnarray}
@@ -146,7 +153,8 @@ We can now prove the claim of this problem:
     \end{aligned}
     }
 ,\end{eqnarray}
-since $c\exp(-s^2c^2/4kt)/\sqrt{4 \pi k t}$ is a normalized gaussian for all $t$, meaning that
+since $c\exp(-s^2c^2/4kt)/\sqrt{4 \pi k t}$ is a normalized gaussian for all $t>0$.
+That is,
 \begin{eqnarray}
     \label{eq:normalized-gaussian}
     \int_{-\infty}^{\infty} \frac{c}{\sqrt{4 \pi k t}} e^{-s^2c^2/4kt} \dd{s} = 1
@@ -209,7 +217,9 @@ Check formulas (i), (ii), and (iii) on page 346:
 For \eref{formula-i} we have
 \begin{eqnarray}
     \label{eq:formula-i-work}
+    \eqbox{
     \mathcal{F}\Big\{\dv{f}{x}\Big\} = \int_{-\infty}^{\infty} \dv{f}{x} e^{-ikx} \dd{x} = -ike^{-ikx}f(x)\Big|_{-\infty}^{\infty} + ik \int_{-\infty}^{\infty} f(x) e^{-ikx} \dd{x} = ik\mathcal{F}\{f(x)\}
+}
 ,\end{eqnarray}
 where we have supposed that $f$ goes to zero at $\pm \infty$.
 
@@ -225,7 +235,7 @@ Finally, for \eref{formula-iii} we can make the substitution $y = x-a$ such that
 \begin{eqnarray}
     \label{eq:formula-iii-work}
     \eqbox{
-    \mathcal{F}\{f(x-a)\} = \int_{-\infty}^{\infty} f(x-a)e^{-ikx} \dd{x} = \int_{-\infty}^{\infty} f(y)e^{-iky}e^{-ika} \dd{y} = e^{ika}\mathcal{F}\{f(x)\}
+    \mathcal{F}\{f(x-a)\} = \int_{-\infty}^{\infty} f(x-a)e^{-ikx} \dd{x} = \int_{-\infty}^{\infty} f(y)e^{-iky}e^{-ika} \dd{y} = e^{-ika}\mathcal{F}\{f(x)\}
     }
 .\end{eqnarray}
 
