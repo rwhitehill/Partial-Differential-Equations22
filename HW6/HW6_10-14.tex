@@ -1,0 +1,46 @@
+\def\duedate{10/14/22}
+\def\HWnum{6}
+\input{../preamble.tex}
+
+\begin{document}
+    
+\prob{1}{
+Which operators are linear?
+}
+
+a) $\displaystyle Au = -\partial^2u$, $\mathcal{D} = \{ u \in C^2[0,\pi] ~\big|~ u(0) = 0 ~{\rm and}~ u'(\pi)=0 \}$
+
+b) $\displaystyle Au = -\partial^2u$, $\mathcal{D} = \{ u \in C^2[0,\pi] ~\big|~ u(0) = 0 ~{\rm and}~ u'(\pi)=\pi \}$
+
+c) $\displaystyle Au = u_{xx} + x^2u$, $\mathcal{D} = C^2(\reals)$ 
+
+d) $Au = u_{xx} + u^2$, $\mathcal{D} = C^2(\reals)$ 
+
+\prob{2}{
+Solve $u_{t} = 3u_{x} + 5u$, $u(x,0) = f(x)$.
+}
+
+\prob{3}{
+    Solve $u_{tt} - u_{xx} = 0$, $x \in \reals$, $t > 0$ for $u(x,0) = 3\sin{5x} - \cos{3x}$, $u_{t}(x,0) = 2x + 3x^2$. Find only $u(0,t)$.
+}
+
+\prob{4}{
+Find $u(x,t)$ for the equation $u_{t} - ku_{xx} = 0$, $x \in \reals$, $t > 0$ subject to $u(x,0) = e^{-(x+1)^2}$.
+}
+
+\prob{5}{
+    Find the Fourier transform $\displaystyle \hat{f}(\omega) = \int_{-\infty}^{\infty} f(x)e^{-i\omega x}$ for $f(x) = xe^{-x^2}$.
+}
+
+\prob{6*}{
+    Find the Fourier transform for $f(x) = -{\rm H}(x+1) + 2{\rm H}(x) - {\rm H}(x-1)$, where \\ $\displaystyle {\rm H}(x) = \begin{cases} 1, & x \geq 0 \\ 0, & x < 0\end{cases}$.
+}
+
+\prob{7*}{
+Solve $u_{t} = 5u_{x} - 3xu + u$, $x \in \reals$, $t > 0$ with $u(x,0) = f(x)$.
+Display the graph of $f(x)$.
+}
+
+
+
+\end{document}
