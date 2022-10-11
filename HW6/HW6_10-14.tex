@@ -45,7 +45,9 @@ Solve $u_{t} = 3u_{x} + 5u$, $u(x,0) = f(x)$.
 We wish to solve the equation $u_{t} = Au$, where $A = 3\partial_{x} + 5$ and $u(x,0) = f(x)$, which has solution 
 \begin{eqnarray}
     \label{eq:solve-t-eq}
+    \eqbox{
     u = e^{tA} f(x) = e^{3t\partial_{x}}e^{5t} f(x) = e^{5t}f(x+3t)
+}
 .\end{eqnarray}
 
 
@@ -90,7 +92,9 @@ Denote $a = 1 + 1/4kt$ and $b = x/4kt - 1$, then
 Finally, we have our solution:
 \begin{eqnarray}
     \label{eq:solution-5}
+    \eqbox{
     u(x,t) = \frac{1}{\sqrt{1 + 4kt}} e^{-(x+1)^2/(1 + 4kt)}
+}
 .\end{eqnarray}
 
 
@@ -114,7 +118,7 @@ The fourier transform of this ``gaussian'' is as follows
 Thus,
 \begin{eqnarray}
     \label{eq:fourier-deriv}
-    \widehat{f}(\omega) = \frac{i\sqrt{\pi}}{\omega} \Big( -\frac{\omega}{2} e^{-\omega^2/4} \Big) = -\frac{i\sqrt{\pi}}{2} e^{-\omega^2/4}
+\widehat{f}(\omega) = \frac{i\sqrt{\pi}}{\omega} \Big( -\frac{\omega}{2} e^{-\omega^2/4} \Big) = \eqbox{ -\frac{i\sqrt{\pi}}{2} e^{-\omega^2/4} }
 .\end{eqnarray}
 
 
@@ -122,12 +126,70 @@ Thus,
     Find the Fourier transform for $f(x) = -H(x+1) + 2H(x) - H(x-1)$, where \\ $\displaystyle H(x) = \begin{cases} 1, & x \geq 0 \\ 0, & x < 0\end{cases}$.
 }
 
+Our function
+\begin{eqnarray}
+    \label{eq:f-piecewise}
+    f = 
+    \begin{cases}
+        -1 & -1 < x < 0 \\
+        \phantom{-}1 &  \phantom{-}0 < x < 1 \\
+        \phantom{-}0 &  \phantom{-}\mbox{otherwise}
+    \end{cases}
+.\end{eqnarray}
+Therefore,
+\begin{align}
+    \label{eq:fourier-f}
+    \widehat{f}(k) &= \int_{-\infty}^{\infty} e^{-ikx} f(x) \dd{x} = -\int_{-1}^{0} e^{-ikx} \dd{x} + \int_{0}^{1} e^{-ikx} \dd{x} \notag \\
+                   &= \frac{1 - e^{ik}}{ik} - \frac{1 - e^{-ik}}{ik} = \frac{e^{-ik} - e^{ik}}{ik} = \eqbox{-\frac{2\sin{k}}{k}}
+.\end{align}
+
+\begin{figure}[H]
+\begin{center}
+    \includegraphics[width=\textwidth]{prob6.pdf} 
+\end{center} 
+\caption{
+    Plot of $f(x)$ and the fourier transform $\widehat{f}(k)$.
+}
+\end{figure}
 
 
 \prob{7*}{
 Solve $u_{t} = 5u_{x} - 3xu + u$, $x \in \reals$, $t > 0$ with $u(x,0) = f(x)$.
 Display the graph of $f(x)$.
 }
+
+We perform the change of variables $u = e^{\lambda x^2} v$, where $\lambda$ is a variable to be determined such that the equation becomes one that we know how to solve easily.
+Then, the time and spatial derivatives are
+\begin{align}
+    \label{eq:change-vars}
+    u_{t} &= e^{\lambda x^2} v_{t} \\
+    u_{x} &= e^{\lambda x^2}( v_{x} + 2 \lambda x v)
+.\end{align}
+Our equation then becomes
+\begin{eqnarray}
+    \label{eq:change-vars-eq}
+    e^{\lambda x^2} v_{t} - 5e^{\lambda x^2} v_{x} - 10 \lambda x e^{\lambda x^2} v + 3xe^{\lambda x^2}v - e^{\lambda x^2}v = 0
+.\end{eqnarray}
+To simplify our calculation, we pick $\lambda = -3/10$, which gives $u = e^{-3x^2/10}v$ and
+\begin{eqnarray}
+    \label{eq:change-vars-eq-2}
+    v_{t} - 5v_{x} - v = v_{t} - Av = 0
+,\end{eqnarray}
+where $A = 5\partial_{x} + 1$.
+This equation has solution
+\begin{eqnarray}
+    \label{eq:v-sol}
+    v = e^{t(5 \partial_{x} + 1)}e^{3x^2/10}f(x) = e^{t} e^{3(x + 5t)^2/10} f(x + 5t)
+,\end{eqnarray}
+which means
+\begin{eqnarray}
+    \label{eq:u-sol}
+    \eqbox{
+    u = e^{t}e^{-3x^2/10}e^{3(x+5t)^2/10}f(x+5t) = e^{15t^2/2 + t(3x + 1)}f(x + 5t)
+}
+.\end{eqnarray}
+
+
 
 
 
