@@ -29,7 +29,7 @@ Now, $f(x) \not\equiv 0$, so we can satisfy the latter equation of the two above
     \label{eq:solve-omega}
     \omega l = \frac{(2n+1)\pi}{2} \Leftrightarrow \omega = \frac{\big(n + \frac{1}{2}\big)\pi}{l}
 ,\end{eqnarray}
-where $n \in \naturals$.
+where $n \in \naturals$ (note: $\lambda > 0$ for $\partial_{x}^2$).
 Hence, our eigenfunctions of $A$ are just
 \begin{eqnarray}
     \label{eq:eigenfuncs}
@@ -92,7 +92,7 @@ Hence,
 \begin{align}
     \label{eq:sine-series-with-coeff}
     \eqbox{
-    x^2 = \sum_{n=0}^{\infty} \frac{2(2-\pi^2n^2)(-1)^{n} - 4}{\pi^3n^3} \sin{(n\pi x)}
+    x^2 = \sum_{n=1}^{\infty} \frac{2(2-\pi^2n^2)(-1)^{n} - 4}{\pi^3n^3} \sin{(n\pi x)}
 }
 .\end{align}
 Interestingly, this sequence converges point-wise to $x^2$ everywhere except $x=1$, to which it converges to $0$ trivially.
