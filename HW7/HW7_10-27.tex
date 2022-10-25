@@ -1,0 +1,143 @@
+\def\duedate{10/27/22}
+\def\HWnum{7}
+\input{../preamble.tex}
+
+\begin{document}
+    
+\prob{1}{
+Let $A = -\partial^2 : \mathcal{D} \subset L_{2}(-\pi,\pi) \mapsto L_{2}(-\pi,\pi)$, where
+$\mathcal{D} = \{ u \in C^2[-\pi,\pi] : u_{x}(-\pi) = u_{x}(\pi) = 0, u(-\pi) = u(\pi) \}$.
+Find all eigenvalues and eigenvectors $Ae_{n} = \lambda_{n}e_{n}$.
+Hint: Find first the eigenvalues and eigenvectors on $D_{p} = \{ u \in C^2[-\pi,\pi] : u_{x}(-\pi) = u_{x}(\pi), u(-\pi) = u(\pi) \} $ (i.e. periodic boundary conditions).
+}
+
+\prob{2}{
+Find $u(x,t)$ such that $u_{t} - ku_{xx} = 0$, where $x \in (0,\pi)$, $t>0$, $u(x,0) = \pi^2 - x^2$, $u(0,t) = 0$, and $u(\pi,t) = 0$.
+}
+
+\prob{3}{
+Find the Fourier series of $f(x) = \pi^2 - x^2$ on the interval $(-\pi,\pi)$.
+Sketch the $2\pi$-periodic extension of $f(x)$.
+}
+
+The Fourier series looks as follows (on the interval $[-\pi,\pi]$):
+\begin{eqnarray}
+    \label{eq:fourier-series}
+    f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \big[ a_{n}\cos{n x} + b_{n}\sin{n x} \big]
+,\end{eqnarray}
+where the coefficients
+\begin{align}
+    \label{eq:coeffs}
+    a_{n} &= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos{nx} \dd{x} \quad (n=0,1,\ldots) \\
+    b_{n} &= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin{nx} \dd{x} \quad (n=1,2,\ldots)
+.\end{align}
+Hence, for $f(x) = \pi^2 - x^2$ we have 
+\begin{align}
+    \label{eq:an}
+    a_{n} &= \frac{1}{\pi} \int_{-\pi}^{\pi} (\pi^2 - x^2)\cos{nx} \dd{x} = \frac{2}{\pi} \int_{0}^{\pi} (\pi^2 - x^2) \cos{nx} \dd{x} \\
+          &= -\frac{4\cos{n\pi}}{n^2} = -\frac{4(-1)^{n}}{n^2}
+,\end{align}
+and $b_{n} = 0$ since $f(x)$ is even. 
+Thus,
+\begin{eqnarray}
+    \label{eq:fourier-pix}
+    \eqbox{
+    \pi^2 - x^2 = \frac{2\pi^2}{3} -4\sum_{n=1}^{\infty} \frac{(-1)^{n}}{n^2}\cos{nx}
+}
+.\end{eqnarray}
+
+We could also have found this result from the result of problem 5:
+\begin{align}
+    \label{eq:3-from-5}
+    \frac{3x^2 - \pi^2}{12} = -\frac{(\pi^2 - x^2)}{4} +\frac{\pi^2}{6} &= \sum_{n=1}^{\infty} \frac{(-1)^{n}}{n^2}\cos{nx} \\
+    \Rightarrow \pi^2 - x^2 &= \frac{2\pi^2}{3} - 4\sum_{n=1}^{\infty} \frac{(-1)^{n}}{n^2} \cos{nx}
+,\end{align}
+which is the result we found above in \eref{fourier-pix}.
+
+
+\prob{4}{
+Check the identity
+\begin{eqnarray}
+    \label{eq:id-4}
+    \sum_{n=1}^{\infty} \frac{1}{n^2} \cos{nx} = \frac{1}{12}\big( 3x^2 - 6 \pi x + 2\pi^2 \big)
+,\end{eqnarray}
+where $0 \leq x \leq 2\pi$.
+}
+
+The cosine fourier series on the interval $[0,\pi]$ for $f(x)$ is given by
+\begin{eqnarray}
+    \label{eq:cosine-series}
+    f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} a_{n}\cos{(nx)}
+,\end{eqnarray}
+where 
+\begin{eqnarray}
+    \label{eq:coeffs-cos-series}
+    a_{n} = \frac{2}{\pi} \int_{0}^{\pi} f(x) \cos{(nx)} \dd{x}
+.\end{eqnarray}
+
+Observe that $\sin^2{(nx/2)} = (1 - \cos{nx})/2$ for any $x$.
+Thus, 
+\begin{eqnarray}
+    \label{eq:sum-rewrite}
+    \sum_{n=1}^{\infty} \frac{1}{n^2}\cos{(nx)} = \sum_{n=1}^{\infty} \frac{2}{n^2} (1 - \sin^2{(nx/2)})
+.\end{eqnarray}
+
+
+
+\prob{5}{
+Check the identity
+\begin{eqnarray}
+    \label{eq:id-5}
+    \sum_{n=1}^{\infty} \frac{(-1)^{n}}{n^2} \cos{nx} = \frac{1}{12}(3x^2 - \pi^2)
+,\end{eqnarray}
+where $x \in [-\pi,\pi]$.
+}
+
+The fourier series for $f(x) = (3x^2 - \pi^2)/12$ is given by
+\begin{eqnarray}
+    \label{eq:fourier-series-5}
+    \frac{3x^2 - \pi^2}{12} = \frac{a_0}{2} + \sum_{n=1} a_{n}\cos{nx} 
+,\end{eqnarray}
+where the sine terms vanish since $f(x)$ is an even function and
+\begin{align}
+    \label{eq:an-coeffs-5}
+    a_{0} &= \frac{1}{6\pi} \int_{0}^{\pi} (3x^2 - \pi^2) \dd{x} = 0 \\
+    a_{n>0} &= \frac{1}{6\pi} \int_{0}^{\pi} (3x^2 - \pi^2) \cos{nx} \dd{x} = \frac{(-1)^{n}}{n^2}
+.\end{align}
+Hence,
+\begin{eqnarray}
+    \label{eq:result-5}
+    \eqbox{
+    \frac{1}{12}(3x^2 - \pi^2) = \sum_{n=1}^{\infty} \frac{(-1)^{n}}{n^2} \cos{nx}
+}
+.\end{eqnarray}
+
+
+\prob{6}{
+Find $\displaystyle \sum_{n=1}^{\infty} \frac{1}{n^2}$ using the result of problem 4 or 5.
+}
+
+Using $x = 0$ with \eref{id-4}, we find
+\begin{eqnarray}
+    \label{eq:id-6}
+    \eqbox{
+    \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{2\pi^2}{12} = \frac{\pi^2}{6} 
+}
+.\end{eqnarray}
+
+
+\prob{7}{
+Find $\displaystyle \sum_{n=1}^{\infty} \frac{(-1)^{n}}{n^2}$ using the result of problem 5 or 4.
+}
+
+Using $x = 0$ with \eref{id-5}, we find
+\begin{eqnarray}
+    \label{eq:id-7}
+    \eqbox{
+    \sum_{n=1}^{\infty} \frac{(-1)^{n}}{n^2} = -\frac{\pi^2}{12}
+}
+.\end{eqnarray}
+
+
+
+\end{document}
