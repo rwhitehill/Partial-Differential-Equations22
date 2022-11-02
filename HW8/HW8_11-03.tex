@@ -1,0 +1,102 @@
+\def\duedate{11/03/22}
+\def\HWnum{8}
+\input{../preamble.tex}
+
+\begin{document}
+    
+\prob{6.1.2}{
+Show that a function which is a power series in the complex variable $x + iy$ must satisfy the Cauchy-Riemann equations and therefore Laplace's equations.
+}
+
+We define a power series
+\begin{eqnarray}
+    \label{eq:power-series}
+    f(z) = \sum_{n=0}^{\infty} a_{n} z^{n} 
+.\end{eqnarray}
+We can separate the sum into real and imaginary parts using the binomial series since $z = x+iy$
+\begin{align}
+    \label{eq:rewrite-power-series}
+    f(z) &= \sum_{n=0}^{\infty} a_{n} (x+iy)^{n} = \sum_{n=0}^{\infty} a_{n} \sum_{k=0}^{n} \binom{n}{k} x^{n-k}(iy)^{k} \\
+    &= \sum_{n=0}^{\infty} \Big[ a_{n} \sum_{k=0}^{m} \binom{n}{2k} (-1)^{k} x^{n-2k}y^{2k} + i\sum_{k=0}^{m-o(n)} \binom{n}{2k+1} (-1)^{k} x^{n-2k-1}y^{2k+1} \Big]
+,\end{align}
+where $\displaystyle m = \begin{cases} n/2 & \mbox{if}~n~\mbox{is even} \\ (n-1)/2 & \mbox{if}~n~\mbox{is odd} \end{cases}$ and $\displaystyle o(n) = \begin{cases} 1 & \mbox{if}~n~\mbox{is even} \\ 0 & \mbox{if}~n~\mbox{is odd} \end{cases}$.
+If we let 
+\begin{eqnarray}
+\label{eq:u-v-def}
+\begin{aligned}
+    u(x,y) &= \sum_{n=0}^{\infty} a_{n} \sum_{k=0}^{m} \binom{n}{2k} (-1)^{k} x^{n-2k}y^{2k} \\
+    v(x,y) &= \sum_{n=0}^{\infty} a_{n} \sum_{k=0}^{m-o(n)} \binom{n}{2k+1} (-1)^{k} x^{n-2k-1}y^{2k+1}
+.\end{aligned}
+\end{eqnarray}
+All that remains now is to check that the Cauchy-Riemann conditions are satisfied.
+\begin{subequations}    
+\begin{eqnarray}
+    \label{eq:CR-conds-6.1.2-1}
+    \begin{aligned}
+        u_{x} &=  \sum_{n=0}^{\infty} a_{n} \sum_{k=0}^{m-o(n)} \binom{n}{2k} (-1)^{k} (n-2k)x^{n-2k-1}y^{2k} \\
+        &= \sum_{n=0}^{\infty} a_{n} \sum_{k=0}^{m-o(n)} (-1)^{k} \frac{n!}{(2k)!(n-2k-1)!}x^{n-2k-1}y^{2k} \\
+        v_{y} &= \sum_{n=0}^{\infty} a_{n} \sum_{k=0}^{m-o(n)} \binom{n}{2k+1} (-1)^{k} (2k+1) x^{n-2k-1}y^{2k} \\
+        &= \sum_{n=0}^{\infty} a_{n} \sum_{k=0}^{m-o(n)} (-1)^{k} \frac{n!}{(2k)!(n-2k-1)!} x^{n-2k-1}y^{2k}
+    .\end{aligned}
+\end{eqnarray}
+Note that the $o(n)$ term in the upper index of the $u_{x}$ series comes from the fact that when $n$ is even, the $k = m$ terms gives 0 when differentiated (with respect to $x$) since $x^{n - 2m} = 1$.
+\begin{eqnarray}
+    \label{eq:CR-conds-6.1.2-2}
+    \begin{aligned}
+        u_{y} &= \sum_{n=0}^{\infty} a_{n} \sum_{k=1}^{m} (-1)^{k} \frac{n!}{(2k-1)!(n-2k)!} x^{n-2k}y^{2k-1} \\
+        v_{x} &= \sum_{n=0}^{\infty} a_{n} \sum_{k=1}^{m-o(n)+(o(n)-1)} (-1)^{k} \frac{n!}{(2k+1)!(n-2(k-1))!} x^{n-2(k-1)}y^{2k+1} \\
+        &= -\sum_{n=0}^{\infty} a_{n} \sum_{k=1}^{m} (-1)^{k} \frac{n!}{(2k-1)!(n-2k)!} x^{n-2k}y^{2k-1}
+    ,\end{aligned}
+\end{eqnarray}
+\end{subequations}
+where the $o(n) - 1$ term arises in the $v_{x}$ term since $n-2k-1 = 0$ if $k = m$ whenever $n$ is odd.
+Thus, we can see that any arbitrary power series in $z$ satisfies the Cauchy-Riemann conditions.
+
+\prob{6.1.5}{
+    Solve $u_{xx} + u_{yy} = 1$ in $r < a$ with $u(x,y)$ vanishing on $r = a$.
+}
+
+\prob{6.1.6}{
+Solve $u_{xx} + u_{yy} = 1$ in the annulus $a < r < b$ with $u(x,y)$ vanishing both parts of the boundary $r = a$ and $r = b$.
+}
+
+\prob{6.4.6}{
+    Find the harmonic function $u$ in the semidisk $\{ r < 1, 0 < \theta < \pi \} $ with $u$ vanishing on the diameter ($u = 0,\pi$) and $u = \pi \sin{\theta} - \sin{2\theta}$ on $r = 1$.
+}
+
+\prob{Lecture 15 - 1}{
+    Show that $\partial z^{n} = nz^{n-1}$ and $\overline{\partial} \overline{z}^{n} = n \overline{z}^{n-1}$ for $n = 0,1,2,\ldots$.
+}
+
+\prob{Lecture 15 - 2}{
+    Find $\overline{\partial} |z|^2$, $\partial |z|^2$, and $\Delta |z|^2$.
+}
+
+\prob{Lecture 15 - 3}{
+    For an analytic function $f$ in the open set $\Omega$, let $u(x,y) = \Re f(z)$ and $v(x,y) = \Im f(z)$.
+    Show that $\Delta u = \Delta v = 0$ and find $\nabla u \vdot \nabla v$.
+}
+
+An analytic function satisfies the equation $\overline{\partial} f$, where $\overline{\partial} = \frac{1}{2}(\partial_{x} + i \partial_{y})$.
+Since $f = u + iv$, where $u,v$ are real-valued functions (i.e. $u^{*}(x,y) = u(x,y)$ and similarly for $v$), we can write
+\begin{eqnarray}
+    \label{eq:u-v-analytic}
+    \overline{\partial} f = \frac{1}{2}(\partial_{x} + i\partial_{y})(u + iv) = \frac{1}{2} (\partial_{x}u + i\partial_{y}u + \partial_{x}v + i\partial_{y}v)
+.\end{eqnarray}
+
+
+\prob{Lecture 15 - 4}{
+Using the divergence theorem rewrite the integral
+\begin{eqnarray}
+    \label{eq:15-4-int}
+    \int_{\Omega} \overline{\partial} f(z) \dd{x}\dd{y}, \qquad f \in C^{1}(\Omega_{1}),~\Omega_{1} \supset \Omega
+\end{eqnarray}
+as an integral over the boundary $\partial \Omega$ of the domain $\Omega$.
+}
+
+\prob{Lecture 15 - 5}{
+For harmonic conjugate functions $u$ and $v$ from Exercise 3 above show that $u_{x} = v_{y}$ and $u_{y} = -v_{y}$ (Caucy-Riemann equations).
+}
+
+
+\end{document}
