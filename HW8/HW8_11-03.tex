@@ -56,33 +56,158 @@ Thus, we can see that any arbitrary power series in $z$ satisfies the Cauchy-Rie
     Solve $u_{xx} + u_{yy} = 1$ in $r < a$ with $u(x,y)$ vanishing on $r = a$.
 }
 
+The equation $u_{xx} + u_{yy} = \Delta u = 1$ is stated in cartesian coordinates.
+We could equivalently pose the problem in polar coordinates in terms of $r$ and $\theta$, which appears as follows:
+\begin{eqnarray}
+    \label{eq:equiv-polar}
+    \Delta u = \frac{1}{r}\partial_{r}(r\partial_{r} u) + \frac{1}{r}\partial_{r} u + \frac{1}{r^2}\partial_{\theta}^2 u = 1
+.\end{eqnarray}
+Assuming that $u(r,\theta)=u(r)$ (i.e. $u$ is rotationally invariant), then
+\begin{eqnarray}
+\label{eq:solve-eq}
+\begin{aligned}
+    \partial_{r}(r\partial_{r} u) &= r \\
+    r\partial_{r} u &= \frac{r^2}{2} + c_{1} \\
+    \partial_{r}u &= \frac{r}{2} + \frac{c_1}{r} \\
+    u &= \frac{r^2}{4} + c_1 \ln{r} + c_2
+.\end{aligned}
+\end{eqnarray}
+We must have $c_1 = 0$ since $\ln{r} \rightarrow \infty$ when $r \rightarrow 0$,
+and imposing the boundary condition at $r = a$ we have
+\begin{eqnarray}
+    \label{eq:bound-cond}
+    0 = \frac{a^2}{4} + c_2 \Rightarrow c_2 = - \frac{a^2}{4} 
+.\end{eqnarray}
+Hence, our solution is as follows:
+\begin{eqnarray}
+    \label{eq:sol-6.1.5}
+    \eqbox{
+    u = \frac{1}{4}[r^2 - a^2] 
+}
+.\end{eqnarray}
+
+
 \prob{6.1.6}{
 Solve $u_{xx} + u_{yy} = 1$ in the annulus $a < r < b$ with $u(x,y)$ vanishing both parts of the boundary $r = a$ and $r = b$.
 }
 
-\prob{6.4.6}{
-    Find the harmonic function $u$ in the semidisk $\{ r < 1, 0 < \theta < \pi \} $ with $u$ vanishing on the diameter ($u = 0,\pi$) and $u = \pi \sin{\theta} - \sin{2\theta}$ on $r = 1$.
+From the last problem, we have the general solution 
+\begin{eqnarray}
+    \label{eq:gen-sol-u}
+    u = \frac{r^2}{4} + c_1\ln{r} + c_2 
+.\end{eqnarray}
+This time, though, we keep the term proportional to $\ln{r}$ since it is well behaved on the domain of interest.
+Plugging in boundary conditions we find
+\begin{eqnarray}
+    \label{eq:bound-cond-a-b}
+    \begin{aligned}
+        0 = \frac{a^2}{4} + c_1\ln{a} + c_2 \\
+        0 = \frac{b^2}{4} + c_1\ln{b} + c_2
+    \end{aligned}
+.\end{eqnarray}
+Solving the system of equations we find
+\begin{align}
+    \label{eq:sol-c1-c2}
+    c_1 &= -\frac{b^2 - a^2}{4\ln{(b/a)}} \\
+    c_2 &= \frac{b^2\ln{a} - a^2\ln{b}}{4\ln{(b/a)}}
+.\end{align}
+Thus, our solution is of the form
+\begin{eqnarray}
+    \label{eq:sol-u}
+    \eqbox{
+    u = \frac{1}{4} \Big[ r^2 - \frac{b^2 - a^2}{\ln{(b/a)}}\ln{r} + \frac{b^2\ln{a} - a^2\ln{b}}{\ln{(b/a)}} \Big]
 }
+.\end{eqnarray}
+
+
+\prob{6.4.6}{
+    Find the harmonic function $u$ in the semidisk $\{ r < 1, 0 < \theta < \pi \} $ with $u$ vanishing on the diameter ($\theta = 0,\pi$) and $u = \pi \sin{\theta} - \sin{2\theta}$ on $r = 1$.
+}
+
+We need to have $\Delta u = 0$.
+In polar coordinates
+\begin{eqnarray}
+    \label{eq:polar-lap}
+    \Delta u = \frac{1}{r}\partial_{r}(r\partial_{r}u) + \frac{1}{r^2}\partial_{\theta}^2 u = 0
+.\end{eqnarray}
+
+
+
 
 \prob{Lecture 15 - 1}{
-    Show that $\partial z^{n} = nz^{n-1}$ and $\overline{\partial} \overline{z}^{n} = n \overline{z}^{n-1}$ for $n = 0,1,2,\ldots$.
+    Show that $\partial z^{n} = nz^{n-1}$ and $\bar{\partial} \bar{z}^{n} = n \bar{z}^{n-1}$ for $n = 0,1,2,\ldots$.
 }
 
+We write
+\begin{align}
+    \label{eq:deriv-zn}
+    \partial z^{n} &= \frac{1}{2} (\partial_{x} - i \partial_{y})(x + iy)^{n} = \frac{1}{2} [ \partial_{x}(x + iy)^{n} - i\partial_{y} (x + iy)^{n} ] \\
+    &= \frac{1}{2}[n(x+iy)^{n-1} + n(x+iy)^{n-1}] = n (x+iy)^{n-1} = nz^{n-1}
+.\end{align}
+Similarly
+\begin{align}
+    \label{eq:deriv-zbarn}
+    \bar{\partial} \bar{z}^{n} &= \frac{1}{2} (\partial_{x} + i \partial_{y})(x - iy)^{n} = \frac{1}{2} [ \partial_{x}(x - iy)^{n} + i\partial_{y} (x - iy)^{n} ] \\
+    &= \frac{1}{2}[n(x-iy)^{n-1} + n(x-iy)^{n-1}] = n (x-iy)^{n-1} = n \bar{z}^{n-1}
+.\end{align}
+
+
 \prob{Lecture 15 - 2}{
-    Find $\overline{\partial} |z|^2$, $\partial |z|^2$, and $\Delta |z|^2$.
+    Find $\bar{\partial} |z|^2$, $\partial |z|^2$, and $\Delta |z|^2$.
 }
+
+We have
+\begin{eqnarray}
+    \label{eq:partialbar-z2}
+    \eqbox{
+    \bar{\partial} |z|^2 = \frac{1}{2}(\partial_{x} + i \partial_{y}) (x^2 + y^2) = \frac{1}{2}(2x + 2iy) = x + iy = z
+}
+.\end{eqnarray}
+Similarly
+\begin{eqnarray}
+    \label{eq:partial-z2}
+    \eqbox{
+    \partial |z|^2 = \frac{1}{2}(\partial_{x} - i \partial_{y}) (x^2 + y^2) = x - iy = \bar{z}
+}
+.\end{eqnarray}
+Thus,
+\begin{eqnarray}
+    \label{eq:lap-z2}
+    \Delta |z|^2 = 4 \partial\bar{\partial} |z|^2 = 4 \partial z = 4
+.\end{eqnarray}
+
+
+
 
 \prob{Lecture 15 - 3}{
     For an analytic function $f$ in the open set $\Omega$, let $u(x,y) = \Re f(z)$ and $v(x,y) = \Im f(z)$.
-    Show that $\Delta u = \Delta v = 0$ and find $\nabla u \vdot \nabla v$.
+    Show that $\Delta u = \Delta v = 0$ and find $\nabla u \cdot \nabla v$.
+    Functions $u$ and $v$ are called harmonic conjugate functions.
 }
 
-An analytic function satisfies the equation $\overline{\partial} f$, where $\overline{\partial} = \frac{1}{2}(\partial_{x} + i \partial_{y})$.
-Since $f = u + iv$, where $u,v$ are real-valued functions (i.e. $u^{*}(x,y) = u(x,y)$ and similarly for $v$), we can write
+Since $f$ is analytic $\bar{\partial}f = 0$, and furthermore $\Delta f = 4\partial\bar{\partial}f = 0$.
+We know that the Laplace operator is linear, which implies that
 \begin{eqnarray}
-    \label{eq:u-v-analytic}
-    \overline{\partial} f = \frac{1}{2}(\partial_{x} + i\partial_{y})(u + iv) = \frac{1}{2} (\partial_{x}u + i\partial_{y}u + \partial_{x}v + i\partial_{y}v)
+    \label{eq:lap-f-uv}
+    \Delta f = \Delta u + i \Delta v = 0 
 .\end{eqnarray}
+Thus, in order to have this equation hold generally, we must have its real and imaginary parts be zero separately, giving us
+\begin{eqnarray}
+    \label{eq:uv-harmonic}
+    \eqbox{
+    \Delta u = \Delta v = 0 
+}
+.\end{eqnarray}
+
+For the second expression we will use the Cauchy-Riemanan conditions (which is a necessary and sufficient for a function to be analytic).
+We write
+\begin{eqnarray}
+    \label{eq:gradu-gradv}
+    \eqbox{
+    \nabla u \cdot \nabla v = u_{x}v_{x} + u_{y}v_{y} = -u_{x}u_{y} + u_{y}u_{x} = 0
+}
+.\end{eqnarray}
+
 
 
 \prob{Lecture 15 - 4}{
@@ -93,6 +218,24 @@ Using the divergence theorem rewrite the integral
 \end{eqnarray}
 as an integral over the boundary $\partial \Omega$ of the domain $\Omega$.
 }
+
+We can write $f(z) = u(x,y) + iv(x,y)$, meaning
+\begin{align}
+    \label{eq:int-rewrite}
+    \int_{\Omega} \bar{\partial}f(z) \dd{x}\dd{y} &= \frac{1}{2} \int_{\Omega} (\partial_{x} + i \partial_{y})f \dd{x}\dd{y} \\
+    &= \frac{1}{2} \int_{\Omega} [\partial_{x} f - \partial_{y} [-if]] \dd{x}\dd{y} \\
+    &= \frac{1}{2} \int_{\partial \Omega} [-if \dd{x} + f\dd{y}] \\
+    &= \frac{1}{2i} \int_{\partial \Omega} f[\dd{x} + i\dd{y}]
+    &= \eqbox{ \frac{1}{2i} \int_{\partial \Omega} f(z) \dd{z} }
+.\end{align}
+If $f$ is analytic, then $\bar{\partial}f = 0$, and the integral is zero.
+That is,
+\begin{eqnarray}
+    \label{eq:closed-loop-integral}
+    \int_{\Omega} \bar{\partial}f(z) \dd{x}\dd{y} = \frac{1}{2i} \int_{\partial \Omega} f(z) \dd{z} = 0
+.\end{eqnarray}
+
+
 
 \prob{Lecture 15 - 5}{
 For harmonic conjugate functions $u$ and $v$ from Exercise 3 above show that $u_{x} = v_{y}$ and $u_{y} = -v_{y}$ (Caucy-Riemann equations).
