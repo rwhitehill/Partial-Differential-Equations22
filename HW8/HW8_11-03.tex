@@ -130,6 +130,36 @@ In polar coordinates
     \label{eq:polar-lap}
     \Delta u = \frac{1}{r}\partial_{r}(r\partial_{r}u) + \frac{1}{r^2}\partial_{\theta}^2 u = 0
 .\end{eqnarray}
+If we let $A = -\partial_{\theta}^2$ on $(0,\pi)$, where $u|_{\theta=0} = u|_{\theta=\pi} = 0$, then $A$ has eigenfunctions $e_{n}(\theta) = \sin{n\theta}$ ($||e_{n}||^2 = \pi/2$) with corresponding eigenvalues $n^2$.
+In class we have solve the remaining equation $r^2\partial_{r}^2 u + r\partial_{r} u - Au = 0$:
+\begin{eqnarray}
+    \label{eq:solve-harmonic-u-A}
+    u = r^{\sqrt{A}}c_1 + r^{-\sqrt{A}}c_2
+.\end{eqnarray}
+Since we need $u$ to be bounded on the domain, it follows that $c_2 = 0$.
+Plugging in our boundary conditions we find
+\begin{eqnarray}
+    \label{eq:bound-cond-r1}
+    u(1) = c_1 = \pi\sin{\theta} - \sin{2\theta} = g
+.\end{eqnarray}
+Hence, our solution is given as
+\begin{eqnarray}
+    \label{eq:sol-u-g}
+    u(r,\theta) =  r^{\sqrt{A}} g = \sum_{n=1}^{\infty} r^{n} \hat{g}_{n} \sin{n\theta}
+,\end{eqnarray}
+where
+\begin{eqnarray}
+    \label{eq:gnhat}
+    \hat{g}_{n} = \frac{2}{\pi} \int_{0}^{\pi} (\pi\sin{\theta} - \sin{2\theta})\sin{n\theta} \dd{\theta} = \pi \delta_{1n} - \delta_{2n}
+.\end{eqnarray}
+Note that $\delta_{nm}$ is the kronecker-delta symbol.
+Hence, our solution simply becomes
+\begin{eqnarray}
+    \label{eq:sol-u-simplify}
+    \eqbox{
+    u(r,\theta) = \pi r \sin{\theta} - r^2\sin{2\theta}
+}
+.\end{eqnarray}
 
 
 
@@ -222,10 +252,10 @@ as an integral over the boundary $\partial \Omega$ of the domain $\Omega$.
 We can write $f(z) = u(x,y) + iv(x,y)$, meaning
 \begin{align}
     \label{eq:int-rewrite}
-    \int_{\Omega} \bar{\partial}f(z) \dd{x}\dd{y} &= \frac{1}{2} \int_{\Omega} (\partial_{x} + i \partial_{y})f \dd{x}\dd{y} \\
-    &= \frac{1}{2} \int_{\Omega} [\partial_{x} f - \partial_{y} [-if]] \dd{x}\dd{y} \\
-    &= \frac{1}{2} \int_{\partial \Omega} [-if \dd{x} + f\dd{y}] \\
-    &= \frac{1}{2i} \int_{\partial \Omega} f[\dd{x} + i\dd{y}]
+    \int_{\Omega} \bar{\partial}f(z) \dd{x}\dd{y} &= \frac{1}{2} \int_{\Omega} (\partial_{x} + i \partial_{y})f \dd{x}\dd{y} \notag \\
+    &= \frac{1}{2} \int_{\Omega} [\partial_{x} f - \partial_{y} [-if]] \dd{x}\dd{y} \notag \\
+    &= \frac{1}{2} \int_{\partial \Omega} [-if \dd{x} + f\dd{y}] \notag \\
+    &= \frac{1}{2i} \int_{\partial \Omega} f[\dd{x} + i\dd{y}] \notag \\
     &= \eqbox{ \frac{1}{2i} \int_{\partial \Omega} f(z) \dd{z} }
 .\end{align}
 If $f$ is analytic, then $\bar{\partial}f = 0$, and the integral is zero.
@@ -240,6 +270,23 @@ That is,
 \prob{Lecture 15 - 5}{
 For harmonic conjugate functions $u$ and $v$ from Exercise 3 above show that $u_{x} = v_{y}$ and $u_{y} = -v_{y}$ (Caucy-Riemann equations).
 }
+
+An analytic function $f = u + iv$ satisfies $\bar{\partial}f = 0$, which implies that
+\begin{eqnarray}
+    \label{eq:implication-1}
+    \frac{1}{2}(\partial_{x} + i \partial_{y})(u+iv) = \frac{1}{2}([\partial_{x} u - \partial_{y}v] + i [\partial_{y}u + \partial_{x}v]) = 0
+.\end{eqnarray}
+For this equality to hold true we must have that the real and imaginary parts of the middle expression are identically zero individually, meaning that
+\begin{eqnarray}
+    \label{eq:Cauchy-Riemann}
+    \eqbox{
+    \begin{aligned}
+        u_{x} &= v_{y} \\
+        u_{y} &= -v_{x}
+    \end{aligned} 
+}
+.\end{eqnarray}
+
 
 
 \end{document}
