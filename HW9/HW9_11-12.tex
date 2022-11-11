@@ -151,7 +151,7 @@ For all $u,v \in C^2(\overline{\Omega})$, where $\overline{\Omega} = \Omega \cup
     \label{eq:Green-identity-1}
     \langle Au,v \rangle - \langle u,Av \rangle = \int_{\Omega} p \Big( u \pdv{v}{n} - v \pdv{u}{n} \Big) \dd{S}
 ,\end{eqnarray}
-where $\partial_{n} = \hat{n} \cdot \nabla$ is the directional derivative along the direction normal to the surface of $\Omega$,
+where $\partial_{n} = \hat{n} \cdot \nabla$ is the directional derivative along the direction normal to the surface of $\Omega$, where $\hat{n}$ is the normal vector to $\partial \Omega$,
 \begin{eqnarray}
     \label{eq:Green-identity-2}
     \langle Au,u \rangle = - \int_{\partial \Omega} pu\pdv{u}{n} \dd{S} + \int_{\Omega} \big[ p|\nabla u|^2 - q|u|^2 \big] \dd[3]{x}
@@ -178,18 +178,35 @@ and the inner product is defined in analogy with the one-dimensional version as
 Checking the first identity is quite simple then:
 \begin{align}
     \label{eq:Green-identity-1-verify}
-    \langle Au,v \rangle - \langle u,Av \rangle = \int_{a}^{b} \Big[ v \nabla \cdot (p \nabla u) - u \nabla \cdot (p \nabla v) \Big] \dd[3]{x}
+    \langle Au,v \rangle - \langle u,Av \rangle &= \int_{\Omega} \Big[ v \nabla \cdot (p \nabla u) - u \nabla \cdot (p \nabla v) \Big] \dd[3]{x} \\
+                                                &= \int_{\Omega} \big[ ( \nabla \cdot (p v \nabla u) - p \nabla u \cdot \nabla v ) - ( \nabla \cdot (p u \nabla v) - p \nabla v \cdot \nabla u) \big] \dd[3]{x} \\
+                                                &= \int_{\Omega} \nabla \cdot p \big[ u \nabla v - v \nabla u \big] \dd[3]{x} = \eqbox{ \int_{\partial \Omega} p \Big( u \pdv{v}{n} - v \pdv{u}{n} \Big) \dd{S} }
 .\end{align}
+
+For the second, we follow a similar sequence of work:
+\begin{align}
+    \label{eq:Green-identity-2-verify}
+    \langle Au,u \rangle &= - \int_{\Omega} \big[ \nabla \cdot pu \nabla u  - p \nabla u \cdot \nabla u  + q|u|^2 \big] \dd[3]{x} \\
+                         &= \eqbox{ - \int_{\partial \Omega} pu \pdv{u}{n} \dd{S} + \int_{\Omega} \big[ p|\nabla u|^2 - q|u|^2 \big] \dd[3]{x} }
+.\end{align}
+
 
 
 \prob{Lecture 17 - 4}{
 Find eigenvectors and eigenvalues for operator $A$, defined such that $Au = - \Delta u$ (defined in Example 2) in the following cases.
 }
 
-4.1) $\mathcal{D}(A) = \{ u \in C^2(\overline{\Omega}) \,:\, u(x,0) = u(x,H) = 0,\, u_{y}(0,y) = u_{y}(L,y) = 0 \}$
+For the Laplace operator we have the eigenfunctions as $e_{nm}(x,y) = e_{n}(x) e_{m}(y)$ with corresponding eigenvalues $\lambda_{mn} = \lambda_{m} + \lambda_{n}$.
 
-4.2) $\mathcal{D}(A) = \{ u \in C^2(\overline{\Omega}) \,:\, u(0,y) = u(L,y), \, u(x,0) = u(x,H),\, u_{y}(0,y) = u_{y}(L,y), \\ \, u_{x}(x,0) = u_{x}(x,H) \}$
+4.1) $\mathcal{D}(A) = \{ u \in C^2(\overline{\Omega}) \,:\, u(x,0) = u(x,H) = 0,\, u_{x}(0,y) = u_{x}(L,y) = 0 \}$
 
+For these boundary conditions we have $e_{n}(x) = \cos{(n \pi x/L)}$ ($\lambda_{n} = (n \pi/L)^2$) for $n = 0,\,1,\ldots$, and $e_{m}(y) = \sin{(n \pi y/H)}$ ($\lambda_{m} = (m \pi/H)^2$) for $m = 1,2,\ldots$.
+
+
+4.2) $\mathcal{D}(A) = \{ u \in C^2(\overline{\Omega}) \,:\, u(0,y)=u(L,y), \, u_{x}(0,y)=u_{x}(L,y), \, u(x,0)=u(x,L), \, u_{y}(x,0)=u_{y}(x,H) \}$
+
+The periodic boundary conditions for for $x$ are $e_{n}(0) = e_{n}(L)$ and $e_{n}'(0) = e_{n}'(L)$, which gives eigenfunctions $e_{0}(x) = 1$ ($\lambda_{0} = 0$), $e_{n}(x) = \cos{(n \pi x / L)}$ and $\sin{(n\pi x/L)}$ ($\lambda_{n} = (n \pi / L)^2$) for $n \geq 1$.
+Similarly, the eigenfunctions $e_{m}(y)$ are $e_{0}(y) = 1$ ($\lambda_{0} = 0$) and $e_{m}(y) = \cos{(m\pi y/H)}$ and $\sin{(m \pi y/H)}$ ($\lambda_{m} = (m\pi/H)^2$) for $m \geq 1$.
 
 
 
