@@ -1,0 +1,150 @@
+\def\duedate{12/04/22}
+\def\HWnum{10}
+\input{../preamble.tex}
+
+\begin{document}
+    
+\prob{12.1.5}{
+Verify, directly from the definition of a distribution, that the discontinuous function $u(x,t) = H(x - ct)$ is a weak solution of the wave equation.
+}
+
+We must check that $u$ satisfies the wave equation in the sense that $\langle u_{tt} - c^2u_{xx},\phi \rangle = 0$, where $\phi$ is any test function.
+We have
+\begin{eqnarray}
+    \langle u,\phi \rangle = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} u(x,t) \phi(x,t) \dd{x} \dd{t} = \int_{-\infty}^{\infty} \int_{ct}^{\infty} \phi(x,t) \dd{x} \dd{t} = \int_{-\infty}^{\infty} \int_{-\infty}^{x/c} \phi(x,t) \dd{t} \dd{x}
+.\end{eqnarray}
+Note that the last two integrations are equivalent with only the order of integration swapped.
+Thus,
+\begin{eqnarray}
+    \langle u_{tt},\phi \rangle = \langle u,\phi_{tt} \rangle = \int_{-\infty}^{\infty} \int_{-\infty}^{x/c} \phi_{tt}(x,t) \dd{x} \dd{t} = \int_{-\infty}^{\infty} \phi_{t}(x,x/c) \dd{x}
+,\end{eqnarray}
+where we have used the fact that the test functions we satisfy $\lim_{x \rightarrow \pm \infty} \phi(x) = 0$ (for the one-dimensional case).
+Now we will introduce the substitution $y = x/c$ to rewrite the integral above
+\begin{eqnarray}
+    \langle u_{t t},\phi \rangle = \int_{-\infty}^{\infty} c \phi_{t}(cy,y) \dd{y}
+.\end{eqnarray}
+
+Similarly,
+\begin{eqnarray}
+    \langle u_{xx},\phi \rangle = \langle u,\phi_{xx} \rangle = \int_{-\infty}^{\infty} \int_{ct}^{\infty} \phi_{xx}(x,t) \dd{x} \dd{t} = -\int_{-\infty}^{\infty} \phi_{x}(ct,t) \dd{t}
+.\end{eqnarray}
+Hence,
+\begin{eqnarray}
+    \eqbox{
+    \langle u_{tt} - c^2 u_{xx},\phi \rangle = \int_{-\infty}^{\infty} [c \phi_{t}(cy,y) + c^2 \phi_{x}(cy,y)] \dd{y} = \int_{-\infty}^{\infty} c \dv{\phi(cy,y)}{y} \dd{y} = 0
+}
+,\end{eqnarray}
+where $y$ depends implicitly on $t$.
+
+\prob{12.3.4}{
+Prove the following properties of the convolution
+\begin{eqnarray}
+    (f * g)(x) = \int_{-\infty}^{\infty} f(x - y) g(y) \dd{y}
+.\end{eqnarray}
+}
+
+a) $f * g = g * f$
+
+We make a change of variables in the integration $z = x - y$, which gives
+\begin{eqnarray}
+    \eqbox{
+    f * g = -\int_{\infty}^{-\infty} f(z) g(x - z) \dd{z} = g * f
+}
+.\end{eqnarray}
+
+
+b) $(f * g)' = f' * g = f * g'$, where $'$ denotes the derivative in one variable.
+
+The derivative of the convolution
+\begin{eqnarray}
+\eqbox{
+\begin{aligned}    
+    (f * g)' &= \dv{x} \int_{-\infty}^{\infty} f(x - y) g(y) \dd{y} = \int_{-\infty}^{\infty} \Big[ \dv{f}{(x-y)} \dv{(x-y)}{x} \Big] g(y) \dd{y} \\
+             &= \int_{-\infty}^{\infty} f'(x-y)g(y) \dd{y} = f' * g \\
+             &= (g * f)' = g' * f = f * g'
+\end{aligned}
+}
+.\end{eqnarray}
+
+
+\prob{12.3.5}{}
+
+a) Show that $\delta * f = f$ for any distribution $f$, where $\delta$ is the delta function.
+
+Since $f$ is a distribution, we show this in the sense that $\langle \delta * f, \phi \rangle = \langle f,\phi \rangle$, where $\phi$ is a test function which goes to zero as $|x| \rightarrow \infty$.
+The work is as follows:
+\begin{eqnarray}
+    \eqbox{
+\begin{aligned} 
+    \langle \delta * f,\phi \rangle &= \int_{-\infty}^{\infty} (\delta * f)(x) \phi(x) \dd{x} = \int_{-\infty}^{\infty} \Bigg[ \int_{-\infty}^{\infty} \delta(x - y) f(y) \dd{y} \Bigg] \phi(x) \dd{x} \\
+                                    &= \int_{-\infty}^{\infty} f(x) \phi(x) \dd{x} = \langle f,\phi \rangle
+\end{aligned}
+}
+.\end{eqnarray}
+
+b) Show that $\delta' * f = f'$ for any distribution $f$, where $'$ is the derivative.
+
+Observe that
+\begin{eqnarray}
+    \eqbox{
+    \delta' * f = (\delta * f)' = f'
+}
+.\end{eqnarray}
+
+
+\prob{12.3.6}{
+Let $f(x)$ be a continuous function defined for $-\infty < x < \infty$ such that its Fourier transform $F(k)$ satisfies $F(k) = 0$ for $|k| > \pi$.
+Such a function is said to be \textit{band-limited}
+}
+
+a) Show that 
+\begin{eqnarray}
+    f(x) = \sum_{n=-\infty}^{\infty} f(n) \frac{\sin{[\pi (x-n)]}}{\pi(x-n)}
+.\end{eqnarray}
+Thus $f(x)$ is completely determined by its values at the integers!
+We say that $f(x)$ is \textit{sampled} at the integers.
+
+We can write
+\begin{eqnarray}
+    f(x) = \int_{-\infty}^{\infty} F(k) e^{ikx} \frac{\dd{k}}{2\pi} = \int_{-\pi}^{\pi} F(k) e^{ikx} \frac{\dd{k}}{2\pi}
+.\end{eqnarray}
+Utilizing the Fourier series, we can rewrite $F(k)$ as
+\begin{eqnarray}
+    F(k) = \sum_{n=-\infty}^{\infty} \hat{F}_n e^{-ink}
+.\end{eqnarray}
+Note that the coefficients
+\begin{eqnarray}
+    \hat{F}_{n} = \frac{1}{2\pi} \int_{-\pi}^{\pi} F(k) e^{-ink} \dd{k} = f(n)
+,\end{eqnarray}
+which is the inverse fourier transform of $f$ evaluated at $x = n$.
+Hence,
+\begin{eqnarray}
+    f(x) = \sum_{n=-\infty}^{\infty} \frac{f(n)}{2\pi} \int_{-\pi}^{\pi} e^{-ink} e^{ikx} \dd{k}
+.\end{eqnarray}
+Performing the integral we find
+\begin{eqnarray}
+    \int_{-\pi}^{\pi} e^{i(x-n)k} \dd{k} = \frac{2 \sin{[\pi(x-n)]}}{x-n}
+,\end{eqnarray}
+and inserting this back into our expression above for $f(x)$ we obtain
+\begin{eqnarray}
+    \eqbox{
+    f(x) = \sum_{n=-\infty}^{\infty} f(n) \frac{\sin{[\pi(x-n)]}}{\pi(x-n)}
+}
+.\end{eqnarray}
+
+
+b) Let $F(k) = 1$ in the interval $(-\pi,\pi)$ and $F(k) = 0$ outside this interval.
+Calculate both sides of $(a)$ directly to verify that they are equal.
+
+We can calculate $f$ from the inverse fourier transform
+\begin{eqnarray}
+    f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi} e^{ikx} \dd{k} = \frac{\sin{(\pi x)}}{\pi x} = 
+,\end{eqnarray}
+and
+\begin{eqnarray}
+    \sum_{n=-\infty}^{\infty} \frac{\sin{(\pi n)}}{\pi n} \frac{\sin{[\pi(x - n)]}}{\pi(x-n)} = \frac{\sin{(\pi x)}}{\pi x}
+,\end{eqnarray}
+observing that $\sin{(\pi n)} = 0$ for $n \in \integers \backslash \{ 0 \} $.
+
+
+\end{document}
