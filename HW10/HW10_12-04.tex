@@ -18,7 +18,7 @@ Thus,
 \begin{eqnarray}
     \langle u_{tt},\phi \rangle = \langle u,\phi_{tt} \rangle = \int_{-\infty}^{\infty} \int_{-\infty}^{x/c} \phi_{tt}(x,t) \dd{x} \dd{t} = \int_{-\infty}^{\infty} \phi_{t}(x,x/c) \dd{x}
 ,\end{eqnarray}
-where we have used the fact that the test functions we satisfy $\lim_{x \rightarrow \pm \infty} \phi(x) = 0$ (for the one-dimensional case).
+where we have used the fact that the test functions satisfy $\lim_{x \rightarrow \pm \infty} \phi(x) = 0$ (for the one-dimensional case).
 Now we will introduce the substitution $y = x/c$ to rewrite the integral above
 \begin{eqnarray}
     \langle u_{t t},\phi \rangle = \int_{-\infty}^{\infty} c \phi_{t}(cy,y) \dd{y}
@@ -71,7 +71,7 @@ The derivative of the convolution
 
 a) Show that $\delta * f = f$ for any distribution $f$, where $\delta$ is the delta function.
 
-Since $f$ is a distribution, we show this in the sense that $\langle \delta * f, \phi \rangle = \langle f,\phi \rangle$, where $\phi$ is a test function which goes to zero as $|x| \rightarrow \infty$.
+Since $f$ is a distribution, we show this in the sense that $\langle \delta * f, \phi \rangle = \langle f,\phi \rangle$, where $\phi$ is a test function. 
 The work is as follows:
 \begin{eqnarray}
     \eqbox{
@@ -144,7 +144,8 @@ and
 \begin{eqnarray}
     \sum_{n=-\infty}^{\infty} \frac{\sin{(\pi n)}}{\pi n} \frac{\sin{[\pi(x - n)]}}{\pi(x-n)} = \frac{\sin{(\pi x)}}{\pi x}
 ,\end{eqnarray}
-observing that $\sin{(\pi n)} = 0$ for $n \in \integers \backslash \{ 0 \} $.
+observing that $\sin{(\pi n)} = 0$ for $n \in \integers$.
+The saving factor at $n=0$ is that $\sin{(\pi n)}/\pi n$ is defined to take on the value 1, which is the limit of this expression.
 
 
 \end{document}
